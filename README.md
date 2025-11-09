@@ -1,37 +1,28 @@
-<!--
-README template for: Harshvardhan Ojha
-Landing‑page style. Copy this into your GitHub profile repo as `README.md`.
-NOTE: Replace `GITHUB_USERNAME` below with your actual username if needed (e.g., `hvojha` or `hv-ojha`).
--->
-
-<!-- Hero / Header -->
-
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Inter&size=28&pause=1200&center=true&vCenter=true&width=900&lines=Hey%2C+I'm+Harshvardhan+Ojha+%F0%9F%91%8B;Full+Stack+Engineer+%7C+AI+Explorer+%7C+Problem+Solver;Building+elegant%2C+scalable%2C+AI‑ready+apps" alt="Typing intro" />
+  <!-- If this doesn't render for you, use the markdown version below -->
+  <img alt="Typing intro" src="https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=28&duration=2500&pause=800&center=true&vCenter=true&repeat=true&width=900&lines=Hey%2C+I%27m+Harshvardhan+Ojha+%F0%9F%91%8B;Full+Stack+Engineer+%7C+Gen+AI+Explorer" />
 </p>
 
 <p align="center">
-  <a href="https://hvojha.com"><b>Portfolio</b></a> •
-  <a href="https://linkedin.com/in/hvojha2003">LinkedIn</a> •
-  <a href="mailto:admin@hvojha.com">Email</a> •
-  <a href="https://github.com/hvojha">GitHub</a>
+  <a href="https://hvojha.com"><img src="https://img.shields.io/badge/Portfolio-%23000000.svg?style=for-the-badge&logo=Google-chrome&logoColor=white"/></a>
+  <a href="https://linkedin.com/in/hvojha2003"><img src="https://img.shields.io/badge/LinkedIn-%230A66C2.svg?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+  <a href="mailto:admin@hvojha.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+  <a href="https://github.com/hvojha"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
 </p>
 
 <p align="center">
-  <a href="https://visitor-badge.laobi.icu/badge?page_id=hv-ojha.hv-ojha"><img src="https://visitor-badge.laobi.icu/badge?page_id=hv-ojha.hv-ojha" alt="visitors" /></a>
-  <a href="https://github.com/antonkomarev/github-profile-views-counter"><img src="https://komarev.com/ghpvc/?username=hv-ojha&label=Profile%20views&color=0e75b6&style=flat" alt="views" /></a>
+  <a href="https://visitor-badge.laobi.icu/badge?page_id=hvojha.hvojha"><img src="https://visitor-badge.laobi.icu/badge?page_id=hvojha.hvojha&left_text=Profile%20Views" alt="visitors"/></a>
 </p>
 
 ---
 
 ### ⚡ About Me
 
-* 🇮🇳 Bengaluru‑based **Full Stack Engineer** with **5+ years** experience
-* ☕️ Java + Spring Boot · ⚡ Angular/React · 🧩 Microfrontends · ☁️ AWS/AppSync
-* 🧠 **Actively learning AI**: LLM integration, RAG, evals, prompt engineering
-* 🛠️ I love turning ideas into reliable, user‑centric products with clean design
+I'm **Harshvardhan Ojha**, a passionate **Full Stack Engineer** from **Bengaluru, India** ☀️ with over **5 years of experience** crafting scalable, elegant, and impactful digital experiences.
 
-> “I build tools that make life easier — for developers, learners, and everyday users.”
+💡 I specialize in **Java, Spring Boot, Angular, and React**, and I’m currently exploring how **LLMs and AI systems** can redefine modern applications.
+
+> 🚀 "I believe in building tools that not only work — but inspire."
 
 ---
 
