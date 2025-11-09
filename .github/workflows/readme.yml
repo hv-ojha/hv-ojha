@@ -1,25 +1,62 @@
 name: Update README dynamic content
+
 on:
-schedule:
-- cron: '0 */12 * * *' # every 12 hours
-workflow_dispatch: {}
+  schedule:
+    - cron: "0 */12 * * *"   # every 12 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write             # needed to commit changes
+
 jobs:
-update:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Build dynamic README
-run: |
-echo "<!-- Last updated: $(date -u) -->" > dynamic.md
-# Example: list top 3 updated repos
-curl -s https://api.github.com/users/hv-ojha/repos?per_page=100 \
-| jq -r '.[] | select(.fork==false) | [.pushed_at, .name, .html_url] | @tsv' \
-| sort -r | head -3 \
-| awk -F"\t" '{printf "- [%s](%s) — updated %s\n", $2, $3, $1}' >> dynamic.md
-- name: Merge into README
-run: |
-sed -i '/<!-- DYNAMIC:START -->/,/<!-- DYNAMIC:END -->/d' README.md
-awk '1; END {print "\n<!-- DYNAMIC:START -->\n"} {print} END {print "\n<!-- DYNAMIC:END -->"}' dynamic.md README.md > tmp && mv tmp README.md
-- uses: stefanzweifel/git-auto-commit-action@v5
-with:
-commit_message: "chore: update dynamic README sections"
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # (Optional) Ensure jq is available; ubuntu-latest usually has it.
+      - name: Ensure jq is installed
+        run: |
+          if ! command -v jq >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y jq
+          fi
+
+      - name: Build dynamic README section
+        env:
+          # Set this to your username (or infer from repo if the profile repo is <user>/<user>)
+          GH_USER: hv-ojha
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "<!-- Last updated: $(date -u) -->" > dynamic.md
+
+          # Pull your public repos, filter non-forks, sort by last push, take top 3
+          # Use auth header to avoid API rate limiting.
+          curl -s -H "Authorization: Bearer ${GH_TOKEN}" \
+               "https://api.github.com/users/${GH_USER}/repos?per_page=100" \
+          | jq -r '.[] | select(.fork==false) | [.pushed_at, .name, .html_url] | @tsv' \
+          | sort -r \
+          | head -3 \
+          | awk -F"\t" '{printf "- [%s](%s) — updated %s\n", $2, $3, $1}' >> dynamic.md
+
+      - name: Merge dynamic section into README
+        run: |
+          # Ensure README.md exists
+          test -f README.md || touch README.md
+
+          # Remove any previous injected block
+          sed -i '/<!-- DYNAMIC:START -->/,/<!-- DYNAMIC:END -->/d' README.md
+
+          # Append the fresh block to the end of README
+          {
+            cat README.md
+            echo
+            echo "<!-- DYNAMIC:START -->"
+            cat dynamic.md
+            echo "<!-- DYNAMIC:END -->"
+          } > tmp && mv tmp README.md
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(readme): update dynamic content"
