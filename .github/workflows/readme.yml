@@ -1,0 +1,25 @@
+name: Update README dynamic content
+on:
+schedule:
+- cron: '0 */12 * * *' # every 12 hours
+workflow_dispatch: {}
+jobs:
+update:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v4
+- name: Build dynamic README
+run: |
+echo "<!-- Last updated: $(date -u) -->" > dynamic.md
+# Example: list top 3 updated repos
+curl -s https://api.github.com/users/GITHUB_USERNAME/repos?per_page=100 \
+| jq -r '.[] | select(.fork==false) | [.pushed_at, .name, .html_url] | @tsv' \
+| sort -r | head -3 \
+| awk -F"\t" '{printf "- [%s](%s) — updated %s\n", $2, $3, $1}' >> dynamic.md
+- name: Merge into README
+run: |
+sed -i '/<!-- DYNAMIC:START -->/,/<!-- DYNAMIC:END -->/d' README.md
+awk '1; END {print "\n<!-- DYNAMIC:START -->\n"} {print} END {print "\n<!-- DYNAMIC:END -->"}' dynamic.md README.md > tmp && mv tmp README.md
+- uses: stefanzweifel/git-auto-commit-action@v5
+with:
+commit_message: "chore: update dynamic README sections"
