@@ -12,7 +12,7 @@ steps:
 run: |
 echo "<!-- Last updated: $(date -u) -->" > dynamic.md
 # Example: list top 3 updated repos
-curl -s https://api.github.com/users/GITHUB_USERNAME/repos?per_page=100 \
+curl -s https://api.github.com/users/hv-ojha/repos?per_page=100 \
 | jq -r '.[] | select(.fork==false) | [.pushed_at, .name, .html_url] | @tsv' \
 | sort -r | head -3 \
 | awk -F"\t" '{printf "- [%s](%s) — updated %s\n", $2, $3, $1}' >> dynamic.md
