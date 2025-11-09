@@ -29,7 +29,7 @@ I'm **Harshvardhan Ojha**, a passionate **Full Stack Engineer** from **Bengaluru
 ### 🧰 Tech I Use
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=java,spring,angular,react,typescript,javascript,nodejs,express,nextjs,tailwind,postgres,mysql,mongodb,redis,kafka,git,github,aws" alt="Tech stack" />
+  <img src="https://skillicons.dev/icons?i=java,spring,angular,react,typescript,javascript,nodejs,express,nextjs,tailwind,postgres,mysql,mongodb,redis,kafka,git,github,aws" alt="Tech stack currently working on" />
 </p>
 
 ---
